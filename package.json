@@ -2,16 +2,33 @@
   "name": "xai-search-mcp",
   "version": "1.0.0",
   "description": "MCP server for xAI web_search and x_search tools",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "xai-search-mcp": "./build/index.js"
   },
   "scripts": {
     "build": "tsc && chmod 755 build/index.js",
+    "prepublishOnly": "npm run build",
     "start": "node build/index.js"
   },
   "files": [
     "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kicito/x_search_mcp.git"
+  },
+  "homepage": "https://github.com/kicito/x_search_mcp#readme",
+  "keywords": [
+    "mcp",
+    "xai",
+    "grok",
+    "web-search",
+    "x-search",
+    "twitter-search",
+    "ai",
+    "model-context-protocol"
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
