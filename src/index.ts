@@ -131,11 +131,13 @@ server.tool(
     allowed_domains: z
       .array(z.string())
       .max(5)
+      .nullable()
       .optional()
       .describe("Only search within these domains (max 5). Cannot be used with excluded_domains."),
     excluded_domains: z
       .array(z.string())
       .max(5)
+      .nullable()
       .optional()
       .describe("Exclude these domains from search (max 5). Cannot be used with allowed_domains."),
   },
@@ -188,19 +190,23 @@ server.tool(
     allowed_x_handles: z
       .array(z.string())
       .max(10)
+      .nullable()
       .optional()
       .describe("Only consider posts from these X handles (max 10). Cannot be used with excluded_x_handles."),
     excluded_x_handles: z
       .array(z.string())
       .max(10)
+      .nullable()
       .optional()
       .describe("Exclude posts from these X handles (max 10). Cannot be used with allowed_x_handles."),
     from_date: z
       .string()
+      .nullable()
       .optional()
       .describe("Start date for search range in ISO8601 format (e.g. YYYY-MM-DD)."),
     to_date: z
       .string()
+      .nullable()
       .optional()
       .describe("End date for search range in ISO8601 format (e.g. YYYY-MM-DD)."),
   },
