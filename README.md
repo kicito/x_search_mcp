@@ -7,7 +7,7 @@ An MCP (Model Context Protocol) server that provides real-time web search and X 
 The easiest way to use this server is via `npx` — no clone or build required:
 
 ```bash
-npx -y xai-search-mcp
+XAI_API_KEY=your_key npx @kicito/xai-search-mcp
 ```
 
 Just set your `XAI_API_KEY` environment variable and configure your MCP client (see [Configuration](#configuration) below).
@@ -59,7 +59,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "xai-search": {
       "command": "npx",
-      "args": ["-y", "xai-search-mcp"],
+      "args": ["-y", "@kicito/xai-search-mcp"],
       "env": {
         "XAI_API_KEY": "your-xai-api-key-here"
       }
@@ -77,7 +77,7 @@ Add to your Cursor MCP settings:
   "mcpServers": {
     "xai-search": {
       "command": "npx",
-      "args": ["-y", "xai-search-mcp"],
+      "args": ["-y", "@kicito/xai-search-mcp"],
       "env": {
         "XAI_API_KEY": "your-xai-api-key-here"
       }
@@ -135,6 +135,9 @@ The server uses the [xAI Responses API](https://docs.x.ai/developers/tools/overv
 ## Development
 
 ```bash
+# Install dependencies
+npm install
+
 # Build
 npm run build
 
