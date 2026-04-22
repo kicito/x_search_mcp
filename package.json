@@ -1,5 +1,5 @@
 {
-  "name": "xai-search-mcp",
+  "name": "@kicito/xai-search-mcp",
   "version": "1.0.1",
   "description": "MCP server for xAI web_search and x_search tools",
   "license": "MIT",
