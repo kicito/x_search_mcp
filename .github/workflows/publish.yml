@@ -6,7 +6,11 @@ on:
       - 'v*'
 
 jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+
   publish:
+    needs: checks
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,14 +21,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Build
-        run: npm run build
 
       - name: Publish
         run: npm publish --access public
