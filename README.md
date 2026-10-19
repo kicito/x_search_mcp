@@ -69,6 +69,31 @@ Run these commands from a cloned checkout. The build uses TypeScript and a Node.
 
 ### Configuration
 
+#### OpenCode V2 (MCP server and optional agent skill)
+
+The optional [xai-search skill](.opencode/skills/xai-search/SKILL.md) tells OpenCode agents **when and how** to use `web_search` and `x_search`, including filters and source citations. It is guidance, not an executable tool or an MCP server. In this checkout, OpenCode can load the skill from `.opencode/skills/xai-search/SKILL.md`. To use it in another project, copy the `xai-search` skill directory to `~/.config/opencode/skills/xai-search/` for your user, or to that project's `.opencode/skills/xai-search/`.
+
+Configure the MCP server **separately**. With Node.js 22+ and an [xAI API key](https://console.x.ai/), put the following in your OpenCode `opencode.jsonc` (merge with any existing config):
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "xai-search": {
+        "type": "local",
+        "command": ["npx", "-y", "@kicito/xai-search-mcp"],
+        "environment": {
+          "XAI_API_KEY": "{env:XAI_API_KEY}"
+        }
+      }
+    }
+  }
+}
+```
+
+Set `XAI_API_KEY` in the environment that launches OpenCode; do not commit your key to git. Check the server connection with `opencode mcp list`. The skill alone cannot supply the server or API key. This OpenCode V2 config uses `mcp.servers`, not the `mcpServers` format shown below for Claude Desktop and Cursor.
+
 #### Claude Desktop
 
 Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
