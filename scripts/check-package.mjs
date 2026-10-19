@@ -49,7 +49,10 @@ for (const path of files.keys()) {
 }
 const entrypoint = await readFile(new URL("build/index.js", root), "utf8");
 assert.ok(entrypoint.startsWith("#!/usr/bin/env node\n"), "CLI must have a Node shebang");
-assert.ok((files.get("build/index.js").mode & 0o111) !== 0, "Packed CLI must be executable");
+// Windows uses npm's command shims rather than POSIX executable bits.
+if (process.platform !== "win32") {
+  assert.ok((files.get("build/index.js").mode & 0o111) !== 0, "Packed CLI must be executable");
+}
 const license = await readFile(new URL("LICENSE", root), "utf8");
 assert.ok(license.includes("MIT License"), "MIT license text missing");
 console.log(`Package smoke check passed: ${packed.name}@${packed.version} (${files.size} files)`);
